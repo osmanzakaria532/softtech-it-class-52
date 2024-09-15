@@ -60,16 +60,13 @@ loop use-case
 
 > -- dashboard (admin user)
 >
-> - username : osmanzakaria
-> - password : osman@1234
+> - username : osman_zakaria
+> - password : osman@12345
 
-> -- dashboard (another user)
->
-> - username : osmanzakaria1
-> - password : osman@1234
+> -- database name
 
-> -- database
-
-> - databaseName : ourfirsttheme
+> - databaseName : ourfirsttheme3
 
 ---
+
+add template option

@@ -6,7 +6,7 @@
 
         // start here
         $metaBox = new_cmb2_box(array(
-            'object_types' => array('post', 'page'),
+            'object_types' => array('post'),
             'title' => 'Additional Fields',
             'id' => 'additional-fields'
 

@@ -60,7 +60,7 @@
 
         // wp_enqueue_style('', 'folderName/style.css', '', '');
 
-        wp_enqueue_style('style', get_stylesheet_uri());
+        wp_enqueue_style('style', get_stylesheet_uri().'style.css');
         wp_enqueue_style('font-awesome', get_template_directory_uri().'/css/font-awesome.min.css');
     }
 
