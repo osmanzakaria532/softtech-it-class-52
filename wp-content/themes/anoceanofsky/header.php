@@ -30,6 +30,15 @@
       </li>
     </ul> -->
 
+    <div class="logo-area">
+      <?php 
+
+        global $redux_theme_data_store;
+        print_r($redux_theme_data_store) ;
+
+      ?>
+    </div>
+
     <?php
 
       wp_nav_menu(array(

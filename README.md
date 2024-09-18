@@ -70,3 +70,24 @@ loop use-case
 ---
 
 add template option
+
+---
+
+shortcode attribute:
+nested shortcode
+widget a shortcode use kora
+kokhono echo kora jabena output k:
+jodi bishal kono query k shortcode a rupantor korte chai
+
+---
+
+Page builder ( visual composer )
+
+---
+
+option page >
+
+framework name --
+redux framework
+option tree
+titan framework

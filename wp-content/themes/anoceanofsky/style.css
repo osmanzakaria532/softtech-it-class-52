@@ -107,6 +107,7 @@ body {
   width: 670px;
   height: auto;
   background-color: #ffffff;
+  overflow: hidden;
 }
 
 .contentBox .innerBox {
@@ -118,6 +119,7 @@ body {
   background-image: url(https://osmanzakaria532.github.io/softtech-it-class-50/wp-content/themes/anoceanofsky/images/content_back.png);
   background-repeat: repeat-x;
   padding-bottom: 35px;
+  overflow: hidden;
 }
 
 .contentTitle {
@@ -156,12 +158,12 @@ body {
 .content-area {
   width: 70% !important;
   color: #386172 !important;
-  padding-right: 5%;
   float: left;
   overflow: hidden;
 }
 
-.right-sidebar-area {
+.right-sidebar-area,
+.left-sidebar-area {
   width: 25%;
   overflow: hidden;
 }

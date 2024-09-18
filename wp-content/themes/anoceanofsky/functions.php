@@ -60,7 +60,7 @@
 
         // wp_enqueue_style('', 'folderName/style.css', '', '');
 
-        wp_enqueue_style('style', get_stylesheet_uri().'style.css');
+        wp_enqueue_style('style', get_stylesheet_uri());
         wp_enqueue_style('font-awesome', get_template_directory_uri().'/css/font-awesome.min.css');
     }
 
@@ -71,6 +71,15 @@
 
         wp_enqueue_style('font-awesome', get_template_directory_uri().'/css/font-awesome.min.css');
 
+    }
+
+    add_action('widgets_init', 'all_widgets');
+    function all_widgets(){
+        register_sidebar(array(
+            'name' => 'Right Sidebar',
+            'description' => "Keep your Right Sidebar here",
+            'id' => 'right-sidebar'
+        ));
     }
 
 
@@ -88,4 +97,92 @@
         require_once(dirname(__FILE__).'/metabox/custom-metabox.php');
     }
 
-?>
+    // redux framework connection
+    if(file_exists(dirname(__FILE__).'/themeOptions/redux-core/framework.php')){
+        require_once(dirname(__FILE__).'/themeOptions/redux-core/framework.php');
+    }
+
+    // redux configuration file
+    if(file_exists(dirname(__FILE__).'/themeOptions/sample/redux-config.php')){
+        require_once(dirname(__FILE__).'/themeOptions/sample/redux-config.php');
+    }
+    
+
+    // short-codes registration
+
+    add_shortcode('naam', 'shortcode_function');
+
+    function shortcode_function($fisrterts, $content){
+
+        //
+        $atts = shortcode_atts(array(
+            'kondike' => 'left',
+            'calar' => 'red'
+        ), $fisrterts);
+
+        // this line to convert array key to variable
+        extract($atts);
+
+        // this proses to dynamic content
+        // echo "<h2>".$content."</h2>";
+        // echo "<h2 style='text-align: ".$atts['kondike']."'>".$content."</h2>";
+        // echo "<h2 style='text-align: ".$kondike."; color: ".$calar.";'>".$content."</h2>";
+
+        printf('<h2 style="text-align: %s; color: %s"> %s </h2>', $kondike, $calar, $content);
+    }
+
+
+    // shortCode inside another shortCode
+
+    add_shortcode('baksho', function($attr, $content){
+        return "<div class='box'>".do_shortcode($content)."</div>";
+    });
+
+    add_shortcode('heading', function($attr, $content){
+        return "<h2>".do_shortcode($content)."</h2>";
+    });
+    // this line for work shortcode in widgets
+    add_filter('widgets_text', 'do_shortcode');
+
+
+
+
+
+
+    add_shortcode('testimonial', 'testimonial_shortcode');
+
+    function testimonial_shortcode(){
+
+        ob_start();
+
+        $testimonial = new WP_Query(array(
+            'post_type' => 'basic-testimonials',
+        )); 
+    
+        while( $testimonial->have_posts() ) : $testimonial->the_post(); ?>
+    
+             
+            <?php the_title(); ?>
+    
+        <?php endwhile;
+
+        return ob_get_clean();
+    }
+
+    // visual composer > custom widgets
+
+    vc_map(array(
+        'name' => 'amader testimonials',
+        'base' => 'testimonials',
+        'icon' => 'https://cdn4.iconfinder.com/data/icons/discussion-and-communication-5/512/feedback-256.png',
+        'params' => array(
+            array(
+                'param_name' => 'title',
+                'type' => 'textfield',
+                'heading' => 'Title'
+            )
+        )
+    ));
+
+
+    
